@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Park — Line-Follower Robot</title>
+  <meta name="description" content="PID-controlled robot following tracks with up to 90° turns at 30 cm/s.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Line-Follower Robot">
+  <meta property="og:description" content="PID-controlled robot following tracks with up to 90° turns at 30 cm/s.">
+  <meta property="og:url" content="https://www.williampark.org/projects/line-follower-robot.html">
+  <meta property="og:image" content="https://www.williampark.org/assets/img/line-follower-robot.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body class="project-page">
+  <nav class="top-nav">
+    <a href="../index.html" class="brand">Home</a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <a href="../index.html#projects" class="back-link">← Back to projects</a>
+      <h1>Line-Follower Robot</h1>
+      <p class="subtitle">
+        Capable of following tracks with turns up to 90° with an average speed of
+        30 cm/s and lateral deviation of 2 cm on straight segments.
+      </p>
+      <div class="meta-bar">
+        <span>Dec 2024 – Jan 2025</span>
+        <span>STM32F103 · PID · PCB Design</span>
+      </div>
+    </header>
+
+    <section>
+      <figure class="hero-fig">
+        <img src="../assets/img/line-follower-robot.jpg" alt="Line-follower robot">
+      </figure>
+
+
+      <h2>Technical Skills</h2>
+      <ul>
+        <li>
+          Processing data from multiple channels of an analog-to-digital converter (ADC).
+          This was done when I measured the analog readings of the five IR sensors over
+          the line, which was later stored in a buffer.
+        </li>
+        <li>
+          Designing a PID control system. Performed multiple tests to fine-tune the PID
+          gains (sensitivity of the robot), which also taught me what the effects of
+          changing each gain were (i.e., increasing the derivative gain too much would
+          lead to excessive oscillations about a straight line).
+        </li>
+        <li>
+          Creating printed circuit boards (PCB). While I had past experience with Altium
+          Designer making schematics, I had never used schematics to create PCBs and
+          order them online. I also learned how to design the board shape outline with
+          Fusion360 so the PCBs would properly fit on the robot.
+        </li>
+      </ul>
+
+      <h2>Non-Technical Skills</h2>
+      <p>
+        The most important lesson I learned from this project is that I need to be more
+        conscious of design choices. Many of the elements in my first design did not
+        help my robot navigate tracks with corners quickly, and some aspects of the
+        design even worked against this, such as the large size and sensor placement.
+      </p>
+      <p>
+        My mistake with the first design was that my main priority was how I could
+        place components together closely rather than focusing on the goal of optimizing
+        performance.
+      </p>
+      <p>
+        My second design was much closer to meeting my goal, but the sensor placement
+        was still an issue. In my first design, the sensors were too close to the wheels
+        and too far from the ground, while the opposite was true for my second design.
+      </p>
+      <p>
+        I fixed these issues in my third and final design, and I ultimately learned that
+        every aspect of a design should be a result of conscious choice and not by
+        coincidence.
+      </p>
+
+      <h2>CAD Models</h2>
+      <div class="fig-grid contain">
+        <figure>
+          <img src="../assets/img/lfr-chassis.png" alt="Chassis CAD model">
+          <figcaption>Chassis</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/lfr-sensor-pcb.png" alt="Sensor PCB">
+          <figcaption>PCB to connect the IR sensors to the STM32</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/lfr-stm32-pcb.png" alt="STM32 carrier PCB">
+          <figcaption>PCB to hold the STM32 and connect it to the rest of the robot</figcaption>
+        </figure>
+      </div>
+
+      <h2>Parts</h2>
+      <ul>
+        <li>STM32F103C8T6</li>
+        <li>DC motors with wheels</li>
+        <li>L298N motor driver</li>
+        <li>Infrared sensors</li>
+        <li>7.4V LIPO battery</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> William Park</div>
+    <div class="socials">
+      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:w5park@uwaterloo.ca">Email</a>
+    </div>
+  </footer>
+  <script src="../js/project-page.js" defer></script>
+</body>
+</html>

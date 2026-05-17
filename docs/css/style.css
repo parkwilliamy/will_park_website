@@ -1,0 +1,759 @@
+/* --- Palette ---
+   Inspired by deep-navy + electric-blue/violet palettes.
+   Required base colors from brief are kept as named vars and used for surfaces.
+
+   --bg-deep:     #0A0E1A   deep navy page background
+   --bg:          #141A2E   base panel background
+   --surface:     #1A2240   raised surface
+   --muted:       #2A2147   muted panel / border tint (derived from #413F54)
+   --plum:        #413F54   plum (brief palette)
+   --charcoal:    #3F4045   neutral charcoal (brief palette)
+   --slate:       #30292F   warm slate (brief palette)
+   --indigo:      #5F5AA2   indigo accent (brief palette)
+   --royal:       #355691   royal blue (brief palette)
+   --blue:        #2563EB   electric blue — primary accent
+   --violet:      #7C3AED   electric violet — secondary accent
+   --cyan:        #38BDF8   cyan highlight
+   --pink:        #EC4899   warm accent (used sparingly)
+*/
+
+:root {
+  --bg-deep: #0A0E1A;
+  --bg: #141A2E;
+  --surface: #1A2240;
+  --muted: #2A2147;
+  --plum: #413F54;
+  --charcoal: #3F4045;
+  --slate: #30292F;
+  --indigo: #5F5AA2;
+  --royal: #355691;
+  --blue: #2563EB;
+  --violet: #7C3AED;
+  --cyan: #38BDF8;
+  --pink: #EC4899;
+
+  /* Single accent. Cyan reads "technical instrument" against the deep navy
+     and keeps the palette disciplined. --accent-2 is a muted neutral for
+     subtle differentiation when one accent isn't enough. */
+  --accent: var(--cyan);
+  --accent-2: rgba(255, 255, 255, 0.12);
+  --text: #ECEAF1;
+  --text-dim: #A9A6B4;
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 10px;
+  --maxw: 880px;
+  --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Offset anchor targets so they don't land under the sticky nav. */
+#projects, #experience { scroll-margin-top: 80px; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+html { background: var(--bg-deep); }
+
+body {
+  background: transparent;
+  position: relative;
+}
+
+/* Subtle single-accent ambient wash. No dot matrix; the page stays calm. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 600px at 85% -10%, rgba(56, 189, 248, 0.10), transparent 60%),
+    radial-gradient(800px 500px at -10% 10%, rgba(56, 189, 248, 0.06), transparent 60%);
+  pointer-events: none;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+main, header, footer {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Top nav (sticky, gains a frosted background on scroll) --- */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px max(24px, calc((100% - var(--maxw)) / 2));
+  max-width: none;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  /* Only transition properties that don't reflow layout — animating padding or
+     height causes subpixel jitter on the nav's text. */
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  will-change: background-color;
+}
+.top-nav.scrolled {
+  background: rgba(10, 14, 26, 0.72);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom-color: var(--border);
+}
+.brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 1rem;
+  color: var(--text);
+  border: none;
+}
+.brand:hover { color: var(--accent); border: none; }
+.nav-links { display: flex; gap: 22px; font-size: 0.92rem; color: var(--text-dim); }
+.nav-links a { color: var(--text-dim); border: none; }
+.nav-links a:hover { color: var(--accent); border: none; }
+
+/* --- Hero --- */
+.hero {
+  padding: 32px 0 16px;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 12px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.hero-headline {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.hero .lede {
+  color: var(--text-dim);
+  margin: 0 0 18px;
+  max-width: 60ch;
+}
+.hero .quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.18s ease;
+}
+.quick-link:nth-child(1) {
+  background: var(--cyan);
+  border-color: transparent;
+  color: var(--bg-deep);
+}
+.quick-link:nth-child(1):hover { filter: brightness(1.08); border-color: transparent; }
+.quick-link:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(56, 189, 248, 0.08);
+}
+.quick-link .arrow { font-size: 0.85em; opacity: 0.85; }
+
+/* --- Section headers --- */
+.section {
+  padding: 40px 0 8px;
+}
+.section h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  margin: 0 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section h2::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--cyan);
+}
+
+/* --- Project list (image-forward cards) --- */
+.year-group { margin-bottom: 36px; }
+.year-label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.project-item { margin: 0; }
+.project-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: rgba(20, 26, 46, 0.62);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+/* Stretched link: the title's invisible ::before covers the whole card so
+   clicking anywhere navigates to the project page. The View Code button sits
+   at a higher z-index so it intercepts its own clicks. */
+.project-title-link {
+  color: inherit;
+  border-bottom: none;
+  text-decoration: none;
+}
+.project-title-link:hover { border-bottom: none; color: inherit; }
+.project-title-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.project-link:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -16px rgba(56, 189, 248, 0.30);
+  color: var(--text);
+}
+.project-link:hover .project-title { color: var(--cyan); }
+.project-link:hover .project-thumb img { transform: scale(1.03); }
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--muted);
+  overflow: hidden;
+  position: relative;
+}
+.project-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(10, 14, 26, 0.55) 100%);
+  pointer-events: none;
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 20px 20px;
+}
+.project-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.project-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+.project-date {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.project-tagline {
+  margin: 0 0 12px;
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+/* Reserve space for up to two rows of tag pills so the View Code button
+   aligns across cards even when shorter tag lists fit on one row. */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+  min-height: calc(2 * 1.5rem + 6px);
+}
+.project-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+.view-code {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.view-code:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--cyan);
+}
+.view-code svg { display: block; }
+@media (min-width: 720px) {
+  .project-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  /* The first project of the most-recent year group is the "newest" — it
+     gets a full-width feature row above the uniform half-width grid below. */
+  .year-group:first-of-type .project-list .project-item:first-child {
+    grid-column: 1 / -1;
+  }
+  /* If a year group has only one project, let it fill the row rather than
+     leaving an awkward empty cell. */
+  .project-list .project-item:only-child {
+    grid-column: 1 / -1;
+  }
+  /* Featured + lone cards keep 4:3 (so the full image is visible, no crop)
+     but are capped to ~540px wide and centered, so they're only a little
+     larger than the half-width cards beneath them. */
+  .year-group:first-of-type .project-list .project-item:first-child .project-link,
+  .project-list .project-item:only-child .project-link {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* Monochrome spec-sheet pills: uppercase mono label, hairline border, no fill. */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+/* --- Project page --- */
+.project-page header.page-head {
+  padding: 24px 0 8px;
+}
+.back-link {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  border: none;
+}
+.back-link:hover { color: var(--accent); border: none; }
+.project-page h1 {
+  font-size: 1.9rem;
+  margin: 14px 0 8px;
+  font-weight: 600;
+}
+.project-page .subtitle {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+  max-width: 65ch;
+}
+.project-page .meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin: 18px 0 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+/* Each <h2> on a project page starts a new section. No frosted card —
+   sections sit in one continuous reading column separated by a hairline
+   rule at the top, like a technical document. Wrapping is done at runtime
+   in js/project-page.js. */
+.project-page main > section > .panel {
+  padding: 28px 0 8px;
+  margin-bottom: 12px;
+  border-top: 1px solid var(--border);
+}
+.project-page main > section > .panel:first-of-type {
+  border-top: none;
+  padding-top: 20px;
+}
+/* Cap prose width inside each section for readability (~70ch). Figures and
+   grids stay full-width by escaping this cap. */
+.project-page main > section > .panel > p,
+.project-page main > section > .panel > ul,
+.project-page main > section > .panel > ol,
+.project-page main > section > .panel > h3 {
+  max-width: 70ch;
+}
+
+.project-page h2 {
+  font-size: 1.6rem;
+  margin: 6px 0 18px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.repo-link:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.10);
+  color: var(--cyan);
+}
+.repo-link .arrow { opacity: 0.7; }
+.project-page h3 {
+  font-size: 1rem;
+  margin: 24px 0 8px;
+  color: var(--text);
+}
+.project-page p { color: var(--text); }
+.project-page ul { padding-left: 20px; }
+.project-page li { margin-bottom: 8px; }
+.project-page figure.hero-fig {
+  margin: 0 0 28px;
+}
+.project-page figure.hero-fig img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--muted);
+}
+/* Light-tile variant for hero figures whose subject is a diagram /
+   white-background render (e.g., R500 architecture diagram). */
+.project-page figure.hero-fig.contain img {
+  object-fit: contain;
+  padding: 22px;
+  background: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+/* Detail figures (e.g., diagrams, reports) — preserve the image's natural
+   aspect ratio so fine text stays legible instead of being letterboxed. */
+.project-page figure.hero-fig.detail-fig img {
+  aspect-ratio: auto;
+  height: auto;
+  max-height: 85vh;
+}
+.project-page figure.hero-fig figcaption {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 8px;
+}
+.fig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 18px 0 8px;
+}
+.fig-grid figure { margin: 0; }
+.fig-grid figcaption {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 8px;
+}
+.fig-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--muted);
+}
+/* For images where the whole subject must stay visible (CAD/PCB renders,
+   diagrams, screenshots). Lets the image fit inside the tile instead of
+   cropping. Per-image tile colors sampled from each source so the tile blends
+   with the image's own background. */
+.fig-grid.contain img {
+  object-fit: contain;
+  padding: 16px;
+  background: #F2F2F2;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+/* Per-image tile color overrides (sampled from each PNG). */
+.fig-grid.contain img[src$="lfr-chassis.png"]    { background: #FBFBFB; }
+.fig-grid.contain img[src$="lfr-sensor-pcb.png"] { background: #F6F6F6; }
+.fig-grid.contain img[src$="lfr-stm32-pcb.png"]  { background: #F7F7F7; }
+.fig-grid.contain img[src$="rh-finger.png"]      { background: #817E77; }
+.fig-grid.contain img[src$="rh-palm.png"]        { background: #383B3F; }
+.fig-grid.contain img[src$="rh-base.png"]        { background: #F9F9F9; }
+.fig-grid.contain img[src$="rh-pcb.png"]         { background: #F4F4F4; }
+.fig-grid.contain img[src$="r500-toplevel.png"]  { background: #FFFFFF; }
+.fig-grid.contain img[src$="r500-util.png"]      { background: #EBEBEB; }
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.metric {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+.metric::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--cyan);
+}
+.metric .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.metric .value {
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  color: var(--cyan);
+}
+
+/* --- Footer --- */
+footer {
+  padding: 48px 24px 36px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer .socials { display: flex; gap: 14px; }
+footer a { color: var(--text-dim); border: none; }
+footer a:hover { color: var(--accent); border: none; }
+
+/* --- Work Experience (Website1-style card list) --- */
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.exp-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+.exp-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-1px);
+}
+.exp-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.exp-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.exp-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.exp-company {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+.exp-role {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--cyan);
+  margin: 0;
+}
+.exp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.exp-meta .meta-item { display: inline-flex; align-items: center; gap: 6px; }
+.exp-bullets {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text);
+  font-size: 0.94rem;
+}
+.exp-bullets li { margin-bottom: 6px; }
+.exp-bullets li::marker { color: var(--cyan); }
+.exp-summary {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* --- In-page TOC (floating sidebar on project pages) --- */
+.page-toc {
+  position: fixed;
+  top: 96px;
+  right: 24px;
+  width: 200px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  font-size: 0.82rem;
+  padding: 14px 16px;
+  background: rgba(20, 26, 46, 0.55);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  z-index: 5;
+}
+.page-toc ul { list-style: none; padding: 0; margin: 0; }
+.page-toc li { margin: 6px 0; }
+.page-toc a {
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: none;
+  display: block;
+  padding: 2px 0 2px 10px;
+  border-left: 2px solid transparent;
+  line-height: 1.35;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.page-toc a:hover { color: var(--text); }
+.page-toc a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+@media (max-width: 1180px) {
+  .page-toc { display: none; }
+}
+
+/* Click-to-zoom on figure images. */
+.project-page figure a.img-zoom {
+  display: block;
+  border-bottom: none;
+  cursor: zoom-in;
+}
+.project-page figure a.img-zoom:hover { border-bottom: none; }
+
+/* Smooth-scroll for TOC anchors, with offset for the sticky nav. */
+html { scroll-behavior: smooth; }
+.project-page h2[id] { scroll-margin-top: 80px; }
+
+/* --- Mobile --- */
+@media (max-width: 560px) {
+  .top-nav { padding-left: 18px; padding-right: 18px; }
+  main, header, footer { padding-left: 18px; padding-right: 18px; }
+  .hero h1 { font-size: 1.9rem; }
+  .project-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .project-meta { padding: 14px 16px 16px; }
+  .project-title { font-size: 1.1rem; }
+}

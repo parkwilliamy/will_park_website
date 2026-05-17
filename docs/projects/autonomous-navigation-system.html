@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Park — Autonomous Navigation System</title>
+  <meta name="description" content="ROS2 stack integrating perception, planning, and control to navigate a simulated environment.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Autonomous Navigation System">
+  <meta property="og:description" content="ROS2 stack integrating perception, planning, and control to navigate a simulated environment.">
+  <meta property="og:url" content="https://www.williampark.org/projects/autonomous-navigation-system.html">
+  <meta property="og:image" content="https://www.williampark.org/assets/img/autonomous-navigation-system.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body class="project-page">
+  <nav class="top-nav">
+    <a href="../index.html" class="brand">Home</a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <a href="../index.html#projects" class="back-link">← Back to projects</a>
+      <h1>Autonomous Navigation System</h1>
+      <p class="subtitle">
+        The objective of this project was to design and implement an autonomous
+        navigation system using ROS2, integrating perception, planning, and control
+        modules to guide a robot safely through a simulated environment.
+      </p>
+      <div class="meta-bar">
+        <span>May 2025</span>
+        <span>ROS2 · A* · Pure Pursuit · LiDAR</span>
+      </div>
+    </header>
+
+    <section>
+      <figure class="hero-fig">
+        <img src="../assets/img/autonomous-navigation-system.png" alt="Costmap and global map">
+        <figcaption>Costmap is displayed on the left, global map is on the right.</figcaption>
+      </figure>
+
+
+      <h2>Overview</h2>
+      <p>
+        This project fundamentally changed my perspective on the high-level structure
+        of autonomous robotics systems by highlighting how they can be broken up into
+        three stages: perception, planning, and control. I also learned the value of
+        testing in simulation using tools like Foxglove, which provided crucial
+        insights into how the robot's perception and planning modules interacted in
+        real-time. Simulation helped me inspect topic messages and verify map updates
+        visually in real-time, speeding up the development process significantly.
+      </p>
+
+      <h2>Perception</h2>
+      <p>
+        Perception was handled by the costmap and map memory nodes, which is where I
+        learned how to process LiDAR scans into a grid representation of space around
+        the robot. This aspect of the project was the most difficult, as it required
+        me to learn the underlying math required to transform between the robot's and
+        global frames of reference and convert between discretized arrays and
+        continuous world coordinates. Additionally, I was fortunate enough to have the
+        underlying ROS2 network I built this project on provide critical odometry
+        data, such as the robot's global pose, that would normally be difficult to
+        obtain in real-world environments.
+      </p>
+
+      <h2>Planning</h2>
+      <p>
+        The planning stage was handled by the planner node, which is where I
+        implemented the A* pathfinding algorithm to generate the safest and most
+        efficient path between two points on the map. Realistically, autonomous
+        robotics systems would also include more behavioral planning that optimizes
+        with respect to other parameters like physical limitations and battery life.
+      </p>
+
+      <h2>Control</h2>
+      <p>
+        Finally, the control stage was handled by the control node, which employed
+        the pure pursuit algorithm to minimize the robot's deviation from the path.
+        Pure pursuit was chosen as it is one of the simplest control algorithms to
+        implement, but alternatives like PID (proportional integral derivative) may
+        have been more effective.
+      </p>
+
+      <h2>What I Learned</h2>
+      <p>
+        This project ultimately taught me about the immense benefits of implementing
+        ROS2 in complex robotics systems. ROS2's modular framework and real-time
+        communication tools greatly simplified the integration of perception,
+        planning, and control. By leveraging ROS2's publish-subscribe architecture
+        and its support for distributed systems, I was able to focus on implementing
+        the core algorithms while relying on the middleware to handle reliable
+        messaging and data sharing. This made the challenge of building a fully
+        integrated autonomous system more manageable and helped me appreciate how
+        ROS2 enables scalable, flexible, and efficient development for real-world
+        robotics.
+      </p>
+      <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 18px;">
+        Note: this project is inspired by the University of Waterloo WATonomous design
+        team's onboarding assignment.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> William Park</div>
+    <div class="socials">
+      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:w5park@uwaterloo.ca">Email</a>
+    </div>
+  </footer>
+  <script src="../js/project-page.js" defer></script>
+</body>
+</html>

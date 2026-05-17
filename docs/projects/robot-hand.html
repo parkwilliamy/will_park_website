@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Park — Robot Hand</title>
+  <meta name="description" content="Servo-driven robotic hand that mirrors user gestures via MediaPipe hand landmarks.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Robot Hand">
+  <meta property="og:description" content="Servo-driven robotic hand that mirrors user gestures via MediaPipe hand landmarks.">
+  <meta property="og:url" content="https://www.williampark.org/projects/robot-hand.html">
+  <meta property="og:image" content="https://www.williampark.org/assets/img/robot-hand.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body class="project-page">
+  <nav class="top-nav">
+    <a href="../index.html" class="brand">Home</a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <a href="../index.html#projects" class="back-link">← Back to projects</a>
+      <h1>Robot Hand</h1>
+      <p class="subtitle">
+        Capable of accurately following users' hand gestures with Google
+        Mediapipe's hand landmarks detection model.
+      </p>
+      <div class="meta-bar">
+        <span>Feb 2025 – Apr 2025</span>
+        <span>STM32 · Rust · I²C · UART · MediaPipe</span>
+      </div>
+    </header>
+
+    <section>
+      <figure class="hero-fig">
+        <img src="../assets/img/robot-hand.jpg" alt="Robot hand">
+      </figure>
+
+
+      <h2>Technical Skills</h2>
+      <ul>
+        <li>
+          Bare-metal programming using Rust and debugging a microcontroller using
+          OpenOCD and GDB. This was the first time I programmed a microcontroller
+          without using the built-in debugger in an IDE. I learned how to step through
+          lines of code and check the values of variables at different checkpoints in
+          the program which enabled me to test and verify the values of the registers.
+        </li>
+        <li>
+          Implementing the I²C and UART protocols. I developed my own abstractions to
+          handle these protocols by learning the timing of events in each protocol, the
+          various status flags that needed to be monitored, and the individual bits
+          that needed to be configured in each register to ensure a seamless
+          transmission of data. One tool that was critical to verifying the data being
+          sent with these protocols was a logic analyzer. The logic analyzer enabled me
+          to sample communication signals (SDA and SCL for I²C, TX for UART) for a
+          short interval and decode the bits that were being sent.
+        </li>
+      </ul>
+
+      <h2>Non-Technical Skills</h2>
+      <p>
+        The most valuable skill I developed from this project is reading technical
+        documentation like datasheets/reference manuals. I had to read at least 100
+        pages of information related to the STM32 and PCA9685 motor driver to
+        understand how to communicate between the two devices using I²C. Shortly
+        after, I had to read another 30 pages of the STM32 reference manual to learn
+        how to implement UART.
+      </p>
+      <p>
+        Prior to this project, I had been able to learn information easily through
+        accessible sources like videos or websites, but this project required me to
+        learn how to take vast amounts of information from technical documentation and
+        process it into something useful.
+      </p>
+
+      <h2>CAD Models</h2>
+      <div class="fig-grid contain">
+        <figure>
+          <img src="../assets/img/rh-finger.png" alt="Finger segment CAD">
+          <figcaption>Finger Segment</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/rh-palm.png" alt="Palm CAD">
+          <figcaption>Palm</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/rh-base.png" alt="Base CAD">
+          <figcaption>Base</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/rh-pcb.png" alt="STM32 carrier PCB">
+          <figcaption>PCB to hold the STM32 and connect it to the rest of the robot</figcaption>
+        </figure>
+      </div>
+
+      <h2>Parts</h2>
+      <ul>
+        <li>STM32F103C8T6</li>
+        <li>SG-5010 servo motors</li>
+        <li>PCA9685 servo driver</li>
+        <li>7.4V LIPO battery</li>
+        <li>Adjustable DC-DC buck converter</li>
+        <li>5V FTDI USB to serial cable</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> William Park</div>
+    <div class="socials">
+      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:w5park@uwaterloo.ca">Email</a>
+    </div>
+  </footer>
+  <script src="../js/project-page.js" defer></script>
+</body>
+</html>

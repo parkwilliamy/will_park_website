@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Park</title>
+  <meta name="description" content="William Park — engineering projects in embedded systems, robotics, and computer architecture.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="William Park">
+  <meta property="og:description" content="Engineering projects in embedded systems, robotics, and computer architecture.">
+  <meta property="og:url" content="https://www.williampark.org/">
+  <meta property="og:image" content="https://www.williampark.org/assets/img/r500.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="brand">Home</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow">Electrical Engineering @ University of Waterloo</p>
+      <h1>William Park</h1>
+      <p class="lede">
+        Currently researching hardware prefetchers for the RISC-V vector extension,
+        developing a RISC-V CPU, and designing a ray-tracing ASIC for Tiny Tapeout.
+      </p>
+      <div class="quick-links">
+        <a class="quick-link" href="assets/resume.pdf" target="_blank" rel="noopener">
+          Resume <span class="arrow">↗</span>
+        </a>
+        <a class="quick-link" href="https://github.com/parkwilliamy" target="_blank" rel="noopener">
+          GitHub <span class="arrow">↗</span>
+        </a>
+        <a class="quick-link" href="mailto:w5park@uwaterloo.ca">
+          Email <span class="arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div id="project-list-root"></div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2>Work Experience</h2>
+      <ul class="experience-list">
+        <li class="exp-card">
+          <div class="exp-head">
+            <img class="exp-logo" src="assets/img/uwaterloo_logo.jpg" alt="University of Waterloo logo">
+            <div class="exp-titles">
+              <h3 class="exp-company">University of Waterloo</h3>
+              <p class="exp-role">Undergraduate Research Co-op</p>
+            </div>
+          </div>
+          <div class="exp-meta">
+            <span class="meta-item">Waterloo, ON</span>
+            <span class="meta-item">May 2026 – Present</span>
+          </div>
+          <p class="exp-summary">
+            Researching hardware prefetchers for the RISC-V vector extension.
+          </p>
+        </li>
+        <li class="exp-card">
+          <div class="exp-head">
+            <img class="exp-logo" src="assets/img/uwasic_logo.jpg" alt="UWASIC logo">
+            <div class="exp-titles">
+              <h3 class="exp-company">UWASIC</h3>
+              <p class="exp-role">Digital Team Lead</p>
+            </div>
+          </div>
+          <div class="exp-meta">
+            <span class="meta-item">Waterloo, ON</span>
+            <span class="meta-item">Oct 2025 – Present</span>
+          </div>
+          <p class="exp-summary">
+            Leading a team of ten students designing and fabricating the first
+            ray-tracing ASIC on Skywater 130nm via Tiny Tapeout. Architecting key
+            arithmetic operations like division and square roots using C++ ray-tracer
+            analysis to set the performance constraints and hardware-optimization
+            targets.
+          </p>
+        </li>
+        <li class="exp-card">
+          <div class="exp-head">
+            <img class="exp-logo" src="assets/img/kiwi_charge_logo.jpg" alt="Kiwi Charge logo">
+            <div class="exp-titles">
+              <h3 class="exp-company">Kiwi Charge</h3>
+              <p class="exp-role">Electrical Engineering Intern</p>
+            </div>
+          </div>
+          <div class="exp-meta">
+            <span class="meta-item">Toronto, ON</span>
+            <span class="meta-item">Sept 2025 – Dec 2025</span>
+          </div>
+          <p class="exp-summary">
+            Built a ROS2-based CAN teleoperation pipeline for a four-wheel
+            differential-drive prototype and designed its electrical schematic
+            (power distribution, motor drivers, CAN, sensor integration). Wrote
+            Python scripts to configure and tune multiple motor drivers in parallel
+            over CAN, cutting setup time by 98%.
+          </p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> William Park</div>
+    <div class="socials">
+      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:w5park@uwaterloo.ca">Email</a>
+    </div>
+  </footer>
+
+  <script src="js/projects.js"></script>
+  <script>
+    renderProjectList("project-list-root");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    (function(){/* sticky-nav */
+      var nav = document.querySelector('.top-nav');
+      if (!nav) return;
+      var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+  </script>
+</body>
+</html>

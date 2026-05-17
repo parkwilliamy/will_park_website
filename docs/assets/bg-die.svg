@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Stylized chip-die "floorplan" background. Low-alpha colors so it reads
+       as texture, not content. Uses the site palette (blue / violet / cyan). -->
+
+  <defs>
+    <!-- SRAM-style fine grid pattern for memory blocks -->
+    <pattern id="sram" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="none"/>
+      <path d="M8 0 H0 V8" fill="none" stroke="rgba(56,189,248,0.18)" stroke-width="0.5"/>
+    </pattern>
+    <!-- Logic block dotted texture -->
+    <pattern id="logic" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.9" fill="rgba(167,139,250,0.22)"/>
+    </pattern>
+    <!-- Routing / metal layer hatch -->
+    <pattern id="routing" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M0 10 H20 M10 0 V20" stroke="rgba(99,165,250,0.10)" stroke-width="0.6" fill="none"/>
+    </pattern>
+  </defs>
+
+  <!-- Die outline -->
+  <rect x="60" y="60" width="1480" height="880" rx="6"
+        fill="none" stroke="rgba(167,139,250,0.20)" stroke-width="1.5"/>
+
+  <!-- IO pad rings (small squares along all four edges) -->
+  <g fill="rgba(56,189,248,0.22)">
+    <!-- top -->
+    <g>
+      <rect x="100"  y="74" width="10" height="10"/>
+      <rect x="160"  y="74" width="10" height="10"/>
+      <rect x="220"  y="74" width="10" height="10"/>
+      <rect x="280"  y="74" width="10" height="10"/>
+      <rect x="340"  y="74" width="10" height="10"/>
+      <rect x="400"  y="74" width="10" height="10"/>
+      <rect x="460"  y="74" width="10" height="10"/>
+      <rect x="520"  y="74" width="10" height="10"/>
+      <rect x="580"  y="74" width="10" height="10"/>
+      <rect x="640"  y="74" width="10" height="10"/>
+      <rect x="700"  y="74" width="10" height="10"/>
+      <rect x="760"  y="74" width="10" height="10"/>
+      <rect x="820"  y="74" width="10" height="10"/>
+      <rect x="880"  y="74" width="10" height="10"/>
+      <rect x="940"  y="74" width="10" height="10"/>
+      <rect x="1000" y="74" width="10" height="10"/>
+      <rect x="1060" y="74" width="10" height="10"/>
+      <rect x="1120" y="74" width="10" height="10"/>
+      <rect x="1180" y="74" width="10" height="10"/>
+      <rect x="1240" y="74" width="10" height="10"/>
+      <rect x="1300" y="74" width="10" height="10"/>
+      <rect x="1360" y="74" width="10" height="10"/>
+      <rect x="1420" y="74" width="10" height="10"/>
+      <rect x="1480" y="74" width="10" height="10"/>
+    </g>
+    <!-- bottom -->
+    <g>
+      <rect x="100"  y="916" width="10" height="10"/>
+      <rect x="160"  y="916" width="10" height="10"/>
+      <rect x="220"  y="916" width="10" height="10"/>
+      <rect x="280"  y="916" width="10" height="10"/>
+      <rect x="340"  y="916" width="10" height="10"/>
+      <rect x="400"  y="916" width="10" height="10"/>
+      <rect x="460"  y="916" width="10" height="10"/>
+      <rect x="520"  y="916" width="10" height="10"/>
+      <rect x="580"  y="916" width="10" height="10"/>
+      <rect x="640"  y="916" width="10" height="10"/>
+      <rect x="700"  y="916" width="10" height="10"/>
+      <rect x="760"  y="916" width="10" height="10"/>
+      <rect x="820"  y="916" width="10" height="10"/>
+      <rect x="880"  y="916" width="10" height="10"/>
+      <rect x="940"  y="916" width="10" height="10"/>
+      <rect x="1000" y="916" width="10" height="10"/>
+      <rect x="1060" y="916" width="10" height="10"/>
+      <rect x="1120" y="916" width="10" height="10"/>
+      <rect x="1180" y="916" width="10" height="10"/>
+      <rect x="1240" y="916" width="10" height="10"/>
+      <rect x="1300" y="916" width="10" height="10"/>
+      <rect x="1360" y="916" width="10" height="10"/>
+      <rect x="1420" y="916" width="10" height="10"/>
+      <rect x="1480" y="916" width="10" height="10"/>
+    </g>
+    <!-- left -->
+    <g>
+      <rect x="74" y="120"  width="10" height="10"/>
+      <rect x="74" y="180"  width="10" height="10"/>
+      <rect x="74" y="240"  width="10" height="10"/>
+      <rect x="74" y="300"  width="10" height="10"/>
+      <rect x="74" y="360"  width="10" height="10"/>
+      <rect x="74" y="420"  width="10" height="10"/>
+      <rect x="74" y="480"  width="10" height="10"/>
+      <rect x="74" y="540"  width="10" height="10"/>
+      <rect x="74" y="600"  width="10" height="10"/>
+      <rect x="74" y="660"  width="10" height="10"/>
+      <rect x="74" y="720"  width="10" height="10"/>
+      <rect x="74" y="780"  width="10" height="10"/>
+      <rect x="74" y="840"  width="10" height="10"/>
+    </g>
+    <!-- right -->
+    <g>
+      <rect x="1516" y="120"  width="10" height="10"/>
+      <rect x="1516" y="180"  width="10" height="10"/>
+      <rect x="1516" y="240"  width="10" height="10"/>
+      <rect x="1516" y="300"  width="10" height="10"/>
+      <rect x="1516" y="360"  width="10" height="10"/>
+      <rect x="1516" y="420"  width="10" height="10"/>
+      <rect x="1516" y="480"  width="10" height="10"/>
+      <rect x="1516" y="540"  width="10" height="10"/>
+      <rect x="1516" y="600"  width="10" height="10"/>
+      <rect x="1516" y="660"  width="10" height="10"/>
+      <rect x="1516" y="720"  width="10" height="10"/>
+      <rect x="1516" y="780"  width="10" height="10"/>
+      <rect x="1516" y="840"  width="10" height="10"/>
+    </g>
+  </g>
+
+  <!-- Internal IP blocks -->
+  <g stroke-width="1">
+    <!-- Top-left: CPU core (logic dots) -->
+    <rect x="130" y="130" width="320" height="240" fill="url(#logic)"
+          stroke="rgba(167,139,250,0.30)" rx="2"/>
+    <!-- Top-mid: smaller CPU core -->
+    <rect x="470" y="130" width="280" height="240" fill="url(#logic)"
+          stroke="rgba(167,139,250,0.30)" rx="2"/>
+    <!-- Top-right: SRAM cache (grid) -->
+    <rect x="770" y="130" width="700" height="240" fill="url(#sram)"
+          stroke="rgba(56,189,248,0.32)" rx="2"/>
+
+    <!-- Middle: NoC / interconnect (routing hatch, wide) -->
+    <rect x="130" y="390" width="1340" height="80" fill="url(#routing)"
+          stroke="rgba(99,165,250,0.25)" rx="2"/>
+
+    <!-- Bottom-left: SRAM bank -->
+    <rect x="130" y="490" width="480" height="380" fill="url(#sram)"
+          stroke="rgba(56,189,248,0.32)" rx="2"/>
+    <!-- Bottom-mid: small logic block -->
+    <rect x="630" y="490" width="240" height="180" fill="url(#logic)"
+          stroke="rgba(167,139,250,0.30)" rx="2"/>
+    <!-- Bottom-mid-low: GPU/accelerator (logic dots) -->
+    <rect x="630" y="690" width="240" height="180" fill="url(#logic)"
+          stroke="rgba(167,139,250,0.30)" rx="2"/>
+    <!-- Bottom-right: another SRAM bank -->
+    <rect x="890" y="490" width="580" height="220" fill="url(#sram)"
+          stroke="rgba(56,189,248,0.32)" rx="2"/>
+    <!-- Bottom-right-low: PHY/IO block -->
+    <rect x="890" y="730" width="580" height="140" fill="url(#routing)"
+          stroke="rgba(99,165,250,0.25)" rx="2"/>
+  </g>
+
+  <!-- Sub-block dividers inside SRAM banks (so they look like 8 banks each) -->
+  <g stroke="rgba(56,189,248,0.18)" stroke-width="0.7" fill="none">
+    <!-- top cache -->
+    <line x1="945"  y1="130" x2="945"  y2="370"/>
+    <line x1="1120" y1="130" x2="1120" y2="370"/>
+    <line x1="1295" y1="130" x2="1295" y2="370"/>
+    <line x1="770"  y1="250" x2="1470" y2="250"/>
+    <!-- bottom-left SRAM -->
+    <line x1="370"  y1="490" x2="370"  y2="870"/>
+    <line x1="130"  y1="680" x2="610"  y2="680"/>
+    <!-- bottom-right SRAM -->
+    <line x1="1180" y1="490" x2="1180" y2="710"/>
+    <line x1="890"  y1="600" x2="1470" y2="600"/>
+  </g>
+
+  <!-- A few highlighted vias to add color anchors -->
+  <g fill="rgba(99,165,250,0.40)">
+    <circle cx="130"  cy="430" r="3"/>
+    <circle cx="630"  cy="430" r="3"/>
+    <circle cx="890"  cy="430" r="3"/>
+    <circle cx="1470" cy="430" r="3"/>
+    <circle cx="770"  cy="250" r="2.5"/>
+    <circle cx="610"  cy="680" r="2.5"/>
+  </g>
+</svg>
