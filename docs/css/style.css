@@ -496,7 +496,8 @@ main, header, footer {
 .project-page figure.hero-fig {
   margin: 0 0 28px;
 }
-.project-page figure.hero-fig img {
+.project-page figure.hero-fig img,
+.project-page figure.hero-fig video {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;

@@ -72,6 +72,15 @@
     };
     const onScroll = () => {
       const threshold = 120; // px from top of viewport (clears the sticky nav)
+      // If the page is scrolled to the bottom, the last heading may never reach
+      // the threshold (not enough content below it). Snap to it explicitly.
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom && headings.length) {
+        setActive(headings[headings.length - 1].id);
+        return;
+      }
       let current = headings[0];
       for (const h of headings) {
         if (h.getBoundingClientRect().top - threshold <= 0) current = h;
@@ -104,6 +113,15 @@
   const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  // When leaving a project page via a top-nav link that targets a home-page
+  // anchor, flag the next page-load so index.html jumps instantly instead of
+  // smooth-scrolling to the section.
+  nav.querySelectorAll('a[href*="index.html#"]').forEach((a) => {
+    a.addEventListener("click", () => {
+      try { sessionStorage.setItem("instantHashJump", "1"); } catch (e) {}
+    });
+  });
 })();
 
 // Footer year.

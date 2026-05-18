@@ -16,6 +16,35 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script>
+    // If arriving here via a top-nav link from a project page, jump to the
+    // hash target instantly (no smooth scroll) — flag set in project-page.js.
+    (function () {
+      try {
+        if (sessionStorage.getItem("instantHashJump") !== "1") return;
+        sessionStorage.removeItem("instantHashJump");
+        var root = document.documentElement;
+        var prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        var jump = function () {
+          if (location.hash) {
+            var el = document.getElementById(location.hash.slice(1));
+            if (el) el.scrollIntoView();
+          }
+          // Restore on the next frame so the smooth-scroll CSS takes over
+          // again for subsequent in-page anchor clicks.
+          requestAnimationFrame(function () {
+            root.style.scrollBehavior = prev;
+          });
+        };
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", jump);
+        } else {
+          jump();
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <nav class="top-nav">
