@@ -634,10 +634,6 @@ footer a:hover { color: var(--accent); border: none; }
   position: relative;
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
-.exp-card:hover {
-  border-color: rgba(56, 189, 248, 0.45);
-  transform: translateY(-1px);
-}
 .exp-head {
   display: flex;
   align-items: center;
