@@ -73,9 +73,6 @@ function renderProjectList(containerId) {
                   <span class="project-date">${p.date}</span>
                 </div>
                 <p class="project-tagline">${p.tagline}</p>
-                <div class="project-tags">
-                  ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-                </div>
                 <div class="project-actions">
                   <a class="view-code" href="${p.repo}" target="_blank" rel="noopener">
                     ${GITHUB_ICON}

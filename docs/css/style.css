@@ -329,14 +329,15 @@ main, header, footer {
   font-size: 0.97rem;
   line-height: 1.55;
 }
-/* Reserve space for up to two rows of tag pills so the View Code button
+/* Reserve space for up to two rows of skill terms so the View Code button
    aligns across cards even when shorter tag lists fit on one row. */
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  column-gap: 9px;
+  row-gap: 4px;
   align-content: flex-start;
-  min-height: calc(2 * 1.5rem + 6px);
+  min-height: calc(2 * 1.08rem + 4px);
 }
 .project-actions {
   margin-top: auto;
@@ -392,17 +393,21 @@ main, header, footer {
     margin-right: auto;
   }
 }
-/* Monochrome spec-sheet pills: uppercase mono label, hairline border, no fill. */
+/* Boxless spec-sheet skill line: bare uppercase mono terms separated by
+   cyan interpuncts — a quiet readout instead of pill chips. */
 .tag {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 2px 9px;
-  border-radius: 3px;
-  background: transparent;
+  line-height: 1.5;
   color: var(--text-dim);
-  border: 1px solid var(--border);
+}
+.tag:not(:last-child)::after {
+  content: "·";
+  color: var(--cyan);
+  margin-left: 9px;
+  opacity: 0.75;
 }
 
 /* --- Project page --- */
