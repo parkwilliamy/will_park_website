@@ -68,17 +68,22 @@
 .project-page main li { margin-bottom: 4px; }
 .footnote { color: var(--ink-2); }
 
-/* measured-results strip */
+/* measured-results list: one stat per ruled row */
 .metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--rule);
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
+  max-width: 520px;
 }
-.metric { padding: 12px 16px; display: flex; flex-direction: column; }
-.metric + .metric { border-left: 1px solid var(--rule); }
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 10px 16px;
+}
+.metric + .metric { border-top: 1px solid var(--rule); }
 .metric .label { color: var(--ink-2); letter-spacing: var(--track); text-transform: uppercase; }
-.metric .value { font-weight: 800; letter-spacing: 0.04em; margin-top: auto; }
+.metric .value { font-weight: 800; letter-spacing: 0.04em; white-space: nowrap; }
 
 /* figures: hairline-framed plates */
 figure {
@@ -154,8 +159,4 @@ figure video { display: block; max-width: 100%; height: auto; margin: 0 auto; }
 @media (max-width: 640px) {
   .title-grid { grid-template-columns: 1fr; }
   .locator-cell { padding: 0 16px 16px; }
-  .metrics { grid-template-columns: 1fr 1fr; }
-  .metric + .metric { border-left: none; }
-  .metric:nth-child(2n) { border-left: 1px solid var(--rule); }
-  .metric:nth-child(n+3) { border-top: 1px solid var(--rule); }
 }
