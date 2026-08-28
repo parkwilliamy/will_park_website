@@ -176,4 +176,7 @@
     if (row) setActive(row.getAttribute("data-slug"));
   });
   legendRoot.addEventListener("focusout", function () { setActive(null); });
+  // A tap-to-navigate leaves the tapped block active in the page the
+  // back/forward cache restores; clear it whenever the page is shown.
+  window.addEventListener("pageshow", function () { setActive(null); });
 })();
