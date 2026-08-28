@@ -179,7 +179,7 @@ never moves.
 - **Title** (700, 0.875rem, 0.04em): index project links, bold readout lines,
   data-table headers (700, tracked, uppercase), the active TOC link.
 - **Body** (400, 0.875rem, 1.7, ~0.02–0.03em): prose. Measures are capped:
-  write-up prose and lists ~72ch, the status lede 72ch, subtitles 64ch,
+  write-up prose and lists ~72ch, subtitles 64ch,
   summaries 68ch, taglines 52ch.
 - **Label** (400, 0.875rem, 0.08em tracking, uppercase, secondary ink): nav
   links, back link, chips, dates, meta-bar entries, metric labels.
@@ -211,8 +211,7 @@ left, nav right — on project pages the brand is a home link and the nav
 carries the same five links), section heads over a 2px rule with a
 right-aligned secondary-ink note, and the 2px-ruled footer.
 
-**Homepage** (`docs/css/home.css`): a hairline-bordered eyebrow line (12px
-16px cells), the status lede in its own hairline band (max 72ch), then the
+**Homepage** (`docs/css/home.css`): the head-bar leads straight into the
 projects section as a two-column grid (floorplan ~1.08fr, index 1fr,
 `clamp(24px, 4vw, 48px)` gap). Under 920px it stacks with the **index first**
 (`order: -1` — the real action leads) and the die following, capped at 560px.

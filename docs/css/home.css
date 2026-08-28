@@ -1,32 +1,6 @@
 /* williampark.org homepage — the Chip Floorplan layout.
    Shared tokens/chrome live in site.css; this file styles index.html only. */
 
-/* --- header identity rows --- */
-.id-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-left: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-}
-.id-cell {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  gap: 14px;
-  align-items: baseline;
-  min-width: 0;
-}
-.id-value { letter-spacing: 0.02em; overflow-wrap: anywhere; color: var(--ink-2); }
-
-.status-line {
-  border-bottom: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-  padding: 12px 16px;
-  color: var(--ink);
-}
-.status-text { display: block; max-width: 72ch; }
-
 /* --- floorplan + index --- */
 .plan-grid {
   display: grid;
@@ -153,5 +127,4 @@
   .trav-date { grid-column: 2; text-align: left; padding-top: 0; margin-bottom: 4px; }
   .trav-axis { grid-column: 1; grid-row: 1 / span 2; }
   .trav-body { grid-column: 2; }
-  .id-cell { flex-direction: column; gap: 4px; }
 }

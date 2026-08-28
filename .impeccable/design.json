@@ -155,7 +155,7 @@
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Prose. Measures: write-up prose ~72ch, status lede 72ch, subtitles 64ch, summaries 68ch, taglines 52ch. 400 weight, tabular figures."
+        "purpose": "Prose. Measures: write-up prose ~72ch, subtitles 64ch, summaries 68ch, taglines 52ch. 400 weight, tabular figures."
       },
       "label": {
         "displayName": "Label",
