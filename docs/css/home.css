@@ -67,13 +67,17 @@
   flex-wrap: wrap;
 }
 .legend-link { font-weight: 700; letter-spacing: 0.04em; text-decoration: none; border-bottom: 1px solid var(--rule); }
-.legend-link:hover { border-bottom-color: var(--ink); }
+@media (hover: hover) {
+  .legend-link:hover { border-bottom-color: var(--ink); }
+}
 .legend-tagline { color: var(--ink-2); margin-top: 4px; max-width: 52ch; }
 .legend-metric { margin-top: 6px; letter-spacing: 0.03em; }
 .legend-date { color: var(--ink-2); letter-spacing: 0.04em; white-space: nowrap; }
 .legend-actions { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
 .legend-src { text-decoration: none; letter-spacing: var(--track); text-transform: uppercase; border-bottom: 1px solid var(--rule); }
-.legend-src:hover { border-bottom-color: var(--ink); }
+@media (hover: hover) {
+  .legend-src:hover { border-bottom-color: var(--ink); }
+}
 
 .noscript-list { list-style: none; }
 .noscript-list li { padding: 10px 0; border-bottom: 1px solid var(--rule); }
