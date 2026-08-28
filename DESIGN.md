@@ -89,8 +89,8 @@ projects. It explicitly refuses the dark neon card-grid developer portfolio.
 
 The world governs the **entire site**. The homepage is its Persuade surface
 (the drawn die, the index, the timeline); the project pages are its Read
-surfaces (ruled write-ups with figure plates, data tables, and a mini locator
-die). One drawing engine (`docs/js/plan-lib.js`) tiles both dies identically.
+surfaces (ruled write-ups with figure plates and data tables). The die is
+drawn by one engine (`docs/js/plan-lib.js` + `js/floorplan.js`).
 The legacy dark stylesheet (`css/style.css`) has been deleted; nothing outside
 this world exists anywhere on the site.
 
@@ -119,7 +119,6 @@ videos — real artifacts, never stock or invention.
 - Hairline rules and 2px section rules structure the page; no cards, no shadows
 - Status is drawn, not written: solid vs. dashed marks
 - Measured numbers are real and tabular; bare in copy, ruled into readouts on Read surfaces
-- One tiling engine: the homepage die and every page's locator are the same floorplan
 
 ## Colors
 
@@ -141,9 +140,8 @@ the color work. Tokens live as CSS custom properties on `:root` in
 ### Neutral
 - **Plot Paper** (#edefe8): the page ground. A cool paper-green, not white.
 - **Plot Paper Deep** (#e3e6dd): the deeper paper tone for recessed surfaces —
-  figure-plate grounds on project pages; the drawn die substrate (#dde1d6),
-  and the locator's ghost fills (#cfd4c6) sit on the same silicon-adjacent
-  tones inside the drawings.
+  figure-plate grounds on project pages; the drawn die substrate (#dde1d6)
+  sits on the same silicon-adjacent tones inside the drawing.
 - **Graphite Ink** (#22262a): primary text, strong 2px rules, block outlines,
   focus outline, selection background.
 - **Graphite Ink Secondary** (#555c64): labels, metadata, dates, taglines,
@@ -157,7 +155,7 @@ the color work. Tokens live as CSS custom properties on `:root` in
 a change of color.
 
 **The Block-Fill Rule.** Saturated color appears only as a project's identity
-fill (floorplan blocks, index swatches, the locator's "you are here" block).
+fill (floorplan blocks and index swatches).
 Interface chrome — links, nav, chips, rules, focus — is ink on paper.
 
 ## Typography
@@ -191,7 +189,6 @@ The sole exception to the one HTML size: SVG block lettering (block codes,
 the block's fill color under the glyphs via `paint-order: stroke`) is drawing
 annotation and scales with the floorplan — lettering on the artifact, not
 page type.
-The locator die uses no text at all.
 
 ### Named Rules
 **The One Size Rule.** All HTML text is 0.875rem. Hierarchy is weight (400 /
@@ -225,7 +222,7 @@ body) that folds the date above the body under 640px, where the nav becomes a
 
 **Project pages** (`docs/css/project.css`): back link, then a hairline
 title-grid (2px top rule) holding the title cell (h1 + 64ch subtitle) and a
-132px locator cell; a meta bar below it (date · tools · `Source ↗`) closing
+a meta bar below it (date · tools · `Source ↗`) closing
 the frame. Write-up content is JS-wrapped into `.panel` sections with ruled
 `<h2>`s; prose runs ~72ch. A fixed on-page TOC rail (190px, hairline left
 border) sits at the right and appears only ≥1500px. Under 640px the
@@ -271,7 +268,7 @@ nodes, plus the "Present" date text.
 on the element's existing outline, never as a colored badge or icon.
 
 **The One Plan Rule.** There is one floorplan. Every die on the site — the
-homepage floorplan and each project page's locator — is tiled by the same
+homepage floorplan — is tiled by the same
 `PlanLib` placement from the same `PROJECTS` data, so block positions match
 everywhere. Never hand-place or redraw the plan.
 
@@ -316,19 +313,11 @@ everywhere. Never hand-place or redraw the plan.
   codes; fills are flat solid color and block outlines are solid 2px ink.
   Clicking a block navigates to the project page.
 
-### Locator (signature component, project pages)
-- Mini "you are here" die rendered by `docs/js/locator.js` in the title-grid's
-  locator cell (132px wide, `aria-hidden`, textless). Same `PlanLib` placement as
-  the homepage: the current project's block is filled in its bin color with a
-  heavy solid ink stroke; all other blocks and fillers are
-  ghosted in silicon-adjacent paper tones (#cfd4c6 / #d3d7ca) on the #dde1d6
-  substrate. Pure orientation drawing — no interaction, no labels.
-
 ### Write-Up Page Head
 - **Back link:** "← Back to projects", label type, secondary ink, ink +
   bottom border on hover.
 - **Title-grid:** hairline frame with a 2px top rule; title cell (Display h1
-  + 64ch secondary-ink subtitle) beside the locator cell. Stacks under 640px.
+  + 64ch secondary-ink subtitle). Single-column.
 - **Meta bar:** hairline-framed row (no top border, closing the title-grid):
   date span, tools span (secondary ink, "·"-separated), and an uppercase
   `Source ↗` link with hairline underline-border.
@@ -406,7 +395,7 @@ everywhere. Never hand-place or redraw the plan.
   or card containers; grouping is rules and whitespace and the die is drawn
   flat.
 - **Don't** put block colors on text, links, buttons, or chrome; they exist
-  only as project identity fills (including the locator's current block).
+  only as project identity fills.
 - **Don't** invent metrics, and don't replace the mark-form status language
   with colored badges or icons.
 - **Don't** paste screenshots of tabular data; transcribe them into a
@@ -417,5 +406,5 @@ everywhere. Never hand-place or redraw the plan.
 **Scope.** This world governs the entire site: `docs/index.html` (Persuade)
 and every `docs/projects/*.html` write-up (Read), through `css/site.css`
 (shared chrome) + `css/home.css` / `css/project.css`, drawn by
-`js/plan-lib.js` + `js/floorplan.js` / `js/locator.js` from `js/projects.js`.
+`js/plan-lib.js` + `js/floorplan.js` from `js/projects.js`.
 The former dark world (`css/style.css`) no longer exists in the codebase.

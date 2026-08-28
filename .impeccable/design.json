@@ -274,7 +274,7 @@
   ],
   "narrative": {
     "northStar": "The Annotated Chip Floorplan",
-    "overview": "The site presents William Park's work as a placed-and-routed die: each project is a labeled IP block on a pad-ringed chip floorplan, carrying a real measured result, the blocks tiling the die edge-to-edge with no gaps. The world is a light engineering document — plot-paper ground, graphite ink, hairline rules — with color reserved almost entirely for the saturated block fills that identify projects. It explicitly refuses the dark neon card-grid developer portfolio.\n\nThe world governs the entire site. The homepage is its Persuade surface (the drawn die, the index, the timeline); the project pages are its Read surfaces (ruled write-ups with figure plates, data tables, and a mini locator die). One drawing engine (docs/js/plan-lib.js) tiles both dies identically. The legacy dark stylesheet (css/style.css) has been deleted; nothing outside this world exists anywhere on the site.\n\nThe silicon world stays implicit in form: the drawing does the talking, and the copy never names the metaphor. There are no report-form labels anywhere — no \"wafer\", \"process\", \"lot\", \"device\", \"bin\", no MEAS: prefixes. Measured numbers stand bare in running copy; on Read surfaces they may sit in ruled readouts (a metrics strip, a data table) whose plain uppercase headers are instrument labeling, not metaphor dressing. Structure comes from ruled lines and grids, not boxes or shadows; hierarchy comes from weight, tracking, ink value, and spacing, never from type size. Status is expressed in mark form (solid outline = shipped, dashed = in progress) rather than in prose badges.\n\nThe site is hand-editable static HTML/CSS/JS deployed from docs/ via GitHub Pages with no build step — a hard, permanent constraint. New projects append via js/projects.js (plus the noscript list). Every raster carries embedded provenance (impeccable:prompt metadata); video posters are ffmpeg-extracted first frames of the site owner's own demo videos.",
+    "overview": "The site presents William Park's work as a placed-and-routed die: each project is a labeled IP block on a pad-ringed chip floorplan, carrying a real measured result, the blocks tiling the die edge-to-edge with no gaps. The world is a light engineering document — plot-paper ground, graphite ink, hairline rules — with color reserved almost entirely for the saturated block fills that identify projects. It explicitly refuses the dark neon card-grid developer portfolio.\n\nThe world governs the entire site. The homepage is its Persuade surface (the drawn die, the index, the timeline); the project pages are its Read surfaces (ruled write-ups with figure plates and data tables). One drawing engine (docs/js/plan-lib.js) draws the homepage die. The legacy dark stylesheet (css/style.css) has been deleted; nothing outside this world exists anywhere on the site.\n\nThe silicon world stays implicit in form: the drawing does the talking, and the copy never names the metaphor. There are no report-form labels anywhere — no \"wafer\", \"process\", \"lot\", \"device\", \"bin\", no MEAS: prefixes. Measured numbers stand bare in running copy; on Read surfaces they may sit in ruled readouts (a metrics strip, a data table) whose plain uppercase headers are instrument labeling, not metaphor dressing. Structure comes from ruled lines and grids, not boxes or shadows; hierarchy comes from weight, tracking, ink value, and spacing, never from type size. Status is expressed in mark form (solid outline = shipped, dashed = in progress) rather than in prose badges.\n\nThe site is hand-editable static HTML/CSS/JS deployed from docs/ via GitHub Pages with no build step — a hard, permanent constraint. New projects append via js/projects.js (plus the noscript list). Every raster carries embedded provenance (impeccable:prompt metadata); video posters are ffmpeg-extracted first frames of the site owner's own demo videos.",
     "keyCharacteristics": [
       "Light plot-paper ground with graphite ink; color only in block fills",
       "The silicon metaphor is drawn, never written: no report-form vocabulary in copy",
@@ -282,7 +282,7 @@
       "Hairline rules and 2px section rules structure the page; no cards, no shadows",
       "Status is drawn, not written: solid vs. dashed marks",
       "Measured numbers are real and tabular; bare in copy, ruled into readouts on Read surfaces",
-      "One tiling engine: the homepage die and every page's locator are the same floorplan"
+      "One drawing engine: the homepage die is drawn by PlanLib from the projects data"
     ],
     "rules": [
       {
@@ -292,7 +292,7 @@
       },
       {
         "name": "The Block-Fill Rule",
-        "body": "Saturated color appears only as a project's identity fill (floorplan blocks, index swatches, the locator's \"you are here\" block). Interface chrome — links, nav, chips, rules, focus — is ink on paper.",
+        "body": "Saturated color appears only as a project's identity fill (floorplan blocks and index swatches). Interface chrome — links, nav, chips, rules, focus — is ink on paper.",
         "section": "colors"
       },
       {
@@ -317,7 +317,7 @@
       },
       {
         "name": "The One Plan Rule",
-        "body": "There is one floorplan. Every die on the site — the homepage floorplan and each project page's locator — is tiled by the same PlanLib core-and-periphery placement from the same PROJECTS data, so block positions match everywhere. Never hand-place or redraw the plan.",
+        "body": "There is one floorplan. Every die on the site — the homepage floorplan — is tiled by the PlanLib core-and-periphery placement from the PROJECTS data, so block positions match everywhere. Never hand-place or redraw the plan.",
         "section": "shapes"
       }
     ],
@@ -334,7 +334,7 @@
       "Don't introduce a second type size, a second typeface, or a dark background — this world is the refusal of the dark neon card portfolio, and the legacy dark stylesheet is deleted, not dormant.",
       "Don't use report-form vocabulary in copy: no \"wafer\", \"process\", \"lot\", \"device\", \"bin\", no MEAS:-style prefixes in prose. The silicon world lives in the drawing, not the words.",
       "Don't use box-shadows, gradients, sheen, rounded corners (radius is 0), or card containers; grouping is rules and whitespace and the die is drawn flat.",
-      "Don't put block colors on text, links, buttons, or chrome; they exist only as project identity fills (including the locator's current block).",
+      "Don't put block colors on text, links, buttons, or chrome; they exist only as project identity fills.",
       "Don't invent metrics, and don't replace the mark-form status language with colored badges or icons.",
       "Don't paste screenshots of tabular data; transcribe them into a .data-table and link the source raster from the caption."
     ]

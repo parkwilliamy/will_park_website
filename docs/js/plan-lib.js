@@ -1,6 +1,4 @@
-// Shared geometry for the chip-floorplan drawing.
-// Used by js/floorplan.js (homepage die) and js/locator.js (project-page
-// mini-die), so both always place the projects identically.
+// Shared geometry for the homepage chip-floorplan drawing (js/floorplan.js).
 
 window.PlanLib = (function () {
   "use strict";

@@ -2,7 +2,7 @@
    Shared tokens/chrome live in site.css; js/project-page.js wraps each <h2>
    and its content into a .panel and builds the .page-toc. */
 
-/* --- page head: back link, title + locator, meta row --- */
+/* --- page head: back link, title, meta row --- */
 .page-head { margin-top: clamp(32px, 5vw, 48px); }
 .back-link {
   display: inline-block;
@@ -17,7 +17,7 @@
 
 .title-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   gap: 16px;
   border: 1px solid var(--rule);
   border-top: 2px solid var(--rule-strong);
@@ -30,8 +30,6 @@
   text-transform: uppercase;
 }
 .subtitle { color: var(--ink-2); margin-top: 8px; max-width: 64ch; }
-.locator-cell { padding: 12px 16px 12px 0; display: flex; align-items: center; }
-.locator-svg { display: block; width: 132px; height: auto; }
 
 .meta-bar {
   display: flex;
@@ -63,8 +61,8 @@
   margin-top: clamp(32px, 5vw, 44px);
   margin-bottom: 18px;
 }
-.project-page main p { max-width: 72ch; margin-left: auto; margin-right: auto; margin-bottom: 14px; }
-.project-page main ul { max-width: 72ch; margin-left: auto; margin-right: auto; padding-left: 1.5em; margin-bottom: 14px; }
+.project-page main > section p { max-width: 72ch; margin-left: auto; margin-right: auto; margin-bottom: 14px; }
+.project-page main > section ul { max-width: 72ch; margin-left: auto; margin-right: auto; padding-left: 1.5em; margin-bottom: 14px; }
 .project-page main li { margin-bottom: 4px; }
 .footnote { color: var(--ink-2); }
 
@@ -158,5 +156,4 @@ figure video { display: block; max-width: 100%; height: auto; margin: 0 auto; }
 /* --- responsive --- */
 @media (max-width: 640px) {
   .title-grid { grid-template-columns: 1fr; }
-  .locator-cell { padding: 0 16px 16px; }
 }
