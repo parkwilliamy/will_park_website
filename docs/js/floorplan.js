@@ -78,30 +78,25 @@
     var i = b.index;
     var bin = lib.BINS[i % lib.BINS.length];
 
-    // Multi-line block label, sized to fit: words become lines, long
-    // hyphenated words break after the hyphen, and the font size shrinks
-    // until the widest line fits inside the block.
-    var lines = [];
-    blockCode(p).split(" ").forEach(function (word) {
-      if (word.length > 9 && word.indexOf("-") > 0 && word.indexOf("-") < word.length - 1) {
-        var cut = word.indexOf("-") + 1;
-        lines.push(word.slice(0, cut));
-        lines.push(word.slice(cut));
-      } else {
-        lines.push(word);
-      }
-    });
+    // Multi-line block label, sized to fit: each word is its own line (never
+    // broken), the font shrinks until the longest word fits, and tall narrow
+    // blocks rotate their label vertically like a real floorplan.
+    var lines = blockCode(p).split(" ");
+    var vertical = b.h > b.w * 1.5 && lines.join("").length > 6;
     var maxChars = Math.max.apply(null, lines.map(function (l) { return l.length; }));
     var track = lines.length > 1 || maxChars > 6 ? 1 : 2;
-    var usable = b.w - CHANNEL - 18;
-    var size = Math.min(17, Math.floor((usable - maxChars * track) / (maxChars * 0.85)));
-    if (size < 9) size = 9;
+    var along = (vertical ? b.h : b.w) - CHANNEL - 18;   // text direction
+    var across = (vertical ? b.w : b.h) - CHANNEL - 12;  // line-stacking direction
+    var size = Math.min(17, Math.floor((along - maxChars * track) / (maxChars * 0.85)));
+    size = Math.min(size, Math.floor(across / lines.length) - 5);
+    if (size < 8) size = 8;
     var lineH = size + 5;
-    var cx = (b.x + b.w / 2).toFixed(1);
-    var y0 = b.y + b.h / 2 - ((lines.length - 1) * lineH) / 2 + size * 0.35;
+    var cx = b.x + b.w / 2, cy = b.y + b.h / 2;
+    var y0 = cy - ((lines.length - 1) * lineH) / 2 + size * 0.35;
     var labelSvg = lines.map(function (l, li) {
-      return '<tspan x="' + cx + '" y="' + (y0 + li * lineH).toFixed(1) + '">' + esc(l) + "</tspan>";
+      return '<tspan x="' + cx.toFixed(1) + '" y="' + (y0 + li * lineH).toFixed(1) + '">' + esc(l) + "</tspan>";
     }).join("");
+    var rotate = vertical ? ' transform="rotate(-90 ' + cx.toFixed(1) + " " + cy.toFixed(1) + ')"' : "";
 
     svg.push(
       '<g class="block" data-slug="' + esc(p.slug) + '">',
@@ -109,7 +104,7 @@
       '" width="' + w + '" height="' + h + '" fill="' + bin + '"/>',
       '<rect class="block-outline" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h +
       '" fill="none" stroke="#22262a" stroke-width="2"/>',
-      '<text class="block-code" style="font-size:' + size + 'px;letter-spacing:' + track + 'px" text-anchor="middle" fill="#22262a" stroke="' +
+      '<text class="block-code"' + rotate + ' style="font-size:' + size + 'px;letter-spacing:' + track + 'px" text-anchor="middle" fill="#22262a" stroke="' +
       bin + '" stroke-width="' + Math.max(2.4, size * 0.2).toFixed(1) + '">' + labelSvg + "</text>",
       "</g>"
     );

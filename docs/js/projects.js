@@ -23,7 +23,7 @@ window.PROJECTS = [
   {
     slug: "autonomous-navigation-system",
     title: "Autonomous Navigation System",
-    code: "ANS",
+    code: "AUTONOMOUS NAVIGATION SYSTEM",
     tagline: "ROS2 stack integrating perception, planning, and control to navigate a simulated environment.",
     date: "May 2025",
     year: 2025,
@@ -34,7 +34,7 @@ window.PROJECTS = [
   {
     slug: "robot-hand",
     title: "Robot Hand",
-    code: "RH",
+    code: "ROBOTIC HAND",
     tagline: "Servo-driven robotic hand that mirrors user gestures via MediaPipe hand landmarks.",
     date: "Feb 2025 – Apr 2025",
     year: 2025,
@@ -45,7 +45,7 @@ window.PROJECTS = [
   {
     slug: "line-follower-robot",
     title: "Line-Follower Robot",
-    code: "LFR",
+    code: "LINE-FOLLOWING ROBOT",
     tagline: "PID-controlled robot that follows lined tracks.",
     date: "Dec 2024 – Jan 2025",
     year: 2024,
