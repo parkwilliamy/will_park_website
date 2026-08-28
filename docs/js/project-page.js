@@ -1,8 +1,7 @@
 // Shared behavior for every projects/*.html page:
-//   1. Wrap each <h2> + following content in a frosted .panel
-//   2. Add scrolled state to the sticky top nav
-//   3. Auto-build an in-page TOC from each panel's <h2>
-//   4. Make figure images click-to-zoom (open full-res in a new tab)
+//   1. Wrap each <h2> + following content in a .panel section block
+//   2. Auto-build an in-page TOC from each panel's <h2> (shown on wide screens)
+//   3. Make figure images click-to-zoom (open full-res in a new tab)
 
 (function () {
   const section = document.querySelector(".project-page main > section");
@@ -36,14 +35,7 @@
     panels.forEach((p) => {
       const h2 = p.querySelector("h2");
       if (!h2) return;
-      // Strip the injected "NN" prefix when generating slug + TOC label.
-      const label = (h2.querySelector(".h2-num")
-        ? Array.from(h2.childNodes)
-            .filter((n) => !(n.nodeType === 1 && n.classList.contains("h2-num")))
-            .map((n) => n.textContent)
-            .join("")
-        : h2.textContent
-      ).trim();
+      const label = h2.textContent.trim();
       const slug = label
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
@@ -106,18 +98,11 @@
   });
 })();
 
-// Sticky nav (frosted bg when scrolled).
+// When leaving a project page via any link that targets a home-page anchor,
+// flag the next page-load so index.html jumps instantly instead of
+// smooth-scrolling to the section.
 (function () {
-  const nav = document.querySelector(".top-nav");
-  if (!nav) return;
-  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  // When leaving a project page via a top-nav link that targets a home-page
-  // anchor, flag the next page-load so index.html jumps instantly instead of
-  // smooth-scrolling to the section.
-  nav.querySelectorAll('a[href*="index.html#"]').forEach((a) => {
+  document.querySelectorAll('a[href*="index.html#"]').forEach((a) => {
     a.addEventListener("click", () => {
       try { sessionStorage.setItem("instantHashJump", "1"); } catch (e) {}
     });

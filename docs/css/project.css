@@ -1,0 +1,161 @@
+/* williampark.org project pages — write-up layout in the Chip Floorplan world.
+   Shared tokens/chrome live in site.css; js/project-page.js wraps each <h2>
+   and its content into a .panel and builds the .page-toc. */
+
+/* --- page head: back link, title + locator, meta row --- */
+.page-head { margin-top: clamp(32px, 5vw, 48px); }
+.back-link {
+  display: inline-block;
+  margin-bottom: 14px;
+  text-decoration: none;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-bottom: 1px solid transparent;
+}
+.back-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+.title-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--rule-strong);
+}
+.title-cell { padding: 16px; min-width: 0; }
+.title-cell h1 {
+  font-size: var(--fs);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.subtitle { color: var(--ink-2); margin-top: 8px; max-width: 64ch; }
+.locator-cell { padding: 12px 16px 12px 0; display: flex; align-items: center; }
+.locator-svg { display: block; width: 132px; height: auto; }
+
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  border-top: none;
+  color: var(--ink-2);
+  letter-spacing: 0.03em;
+}
+.meta-bar a { text-decoration: none; color: var(--ink); letter-spacing: var(--track); text-transform: uppercase; border-bottom: 1px solid var(--rule); }
+.meta-bar a:hover { border-bottom-color: var(--ink); }
+
+/* --- write-up sections (js-wrapped panels) --- */
+/* The whole write-up column sits centered in the sheet. */
+.project-page main > section {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.project-page main h2 {
+  font-size: var(--fs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--rule-strong);
+  padding-bottom: 8px;
+  margin-top: clamp(32px, 5vw, 44px);
+  margin-bottom: 18px;
+}
+.project-page main p { max-width: 72ch; margin-left: auto; margin-right: auto; margin-bottom: 14px; }
+.project-page main ul { max-width: 72ch; margin-left: auto; margin-right: auto; padding-left: 1.5em; margin-bottom: 14px; }
+.project-page main li { margin-bottom: 4px; }
+.footnote { color: var(--ink-2); }
+
+/* measured-results strip */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule);
+  margin-bottom: 18px;
+}
+.metric { padding: 12px 16px; display: flex; flex-direction: column; }
+.metric + .metric { border-left: 1px solid var(--rule); }
+.metric .label { color: var(--ink-2); letter-spacing: var(--track); text-transform: uppercase; }
+.metric .value { font-weight: 800; letter-spacing: 0.04em; margin-top: auto; }
+
+/* figures: hairline-framed plates */
+figure {
+  margin: 18px 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-deep);
+  padding: 12px;
+}
+figure img { display: block; max-width: 100%; max-height: 540px; width: auto; height: auto; margin: 0 auto; }
+figcaption { color: var(--ink-2); margin-top: 10px; letter-spacing: 0.03em; }
+figure a.img-zoom { border-bottom: none; text-decoration: none; }
+figure video { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+
+/* ruled data table (world-native readout for tabular reports) */
+.data-table-wrap { overflow-x: auto; margin: 18px 0; }
+.data-table {
+  border-collapse: collapse;
+  border: 1px solid var(--rule);
+  min-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.data-table caption {
+  caption-side: bottom;
+  text-align: left;
+  color: var(--ink-2);
+  padding: 10px 2px 0;
+  letter-spacing: 0.03em;
+}
+.data-table th {
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--rule-strong);
+}
+.data-table th, .data-table td { padding: 8px 16px; }
+.data-table td { border-bottom: 1px solid var(--rule); }
+.data-table td + td, .data-table th + th { border-left: 1px solid var(--rule); text-align: right; }
+
+/* side-by-side plates (CAD model grids etc.) */
+.fig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.fig-grid figure { margin: 0 0 18px; }
+@media (max-width: 640px) { .fig-grid { grid-template-columns: 1fr; } }
+
+/* --- on-page TOC (built by project-page.js) --- */
+.page-toc {
+  position: fixed;
+  top: 140px;
+  right: 24px;
+  width: 190px;
+  border-left: 1px solid var(--rule);
+  padding-left: 14px;
+  display: none;
+}
+@media (min-width: 1500px) { .page-toc { display: block; } }
+.page-toc ul { list-style: none; }
+.page-toc a {
+  display: block;
+  padding: 4px 0;
+  text-decoration: none;
+  color: var(--ink-2);
+  letter-spacing: 0.03em;
+}
+.page-toc a:hover { color: var(--ink); }
+.page-toc a.active { color: var(--ink); font-weight: 700; }
+
+/* --- responsive --- */
+@media (max-width: 640px) {
+  .title-grid { grid-template-columns: 1fr; }
+  .locator-cell { padding: 0 16px 16px; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .metric + .metric { border-left: none; }
+  .metric:nth-child(2n) { border-left: 1px solid var(--rule); }
+  .metric:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}

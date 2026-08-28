@@ -13,33 +13,42 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="stylesheet" href="../css/project.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body class="project-page">
-  <nav class="top-nav">
-    <a href="../index.html" class="brand">Home</a>
-    <div class="nav-links">
+  <div class="sheet">
+  <div class="head-bar">
+    <span class="brand"><a href="../index.html">William Park</a></span>
+    <nav class="head-nav" aria-label="Site">
       <a href="../index.html#projects">Projects</a>
       <a href="../index.html#experience">Experience</a>
-      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </nav>
+      <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume &#8599;</a>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a href="mailto:w5park@uwaterloo.ca">Email</a>
+    </nav>
+  </div>
 
   <main>
     <header class="page-head">
       <a href="../index.html#projects" class="back-link">← Back to projects</a>
-      <h1>Autonomous Navigation System</h1>
+      <div class="title-grid">
+        <div class="title-cell">
+          <h1>Autonomous Navigation System</h1>
       <p class="subtitle">
         The objective of this project was to design and implement an autonomous
         navigation system using ROS2, integrating perception, planning, and control
         modules to guide a robot safely through a simulated environment.
       </p>
+        </div>
+        <div class="locator-cell" id="plan-locator" aria-hidden="true"></div>
+      </div>
       <div class="meta-bar">
         <span>May 2025</span>
         <span>ROS2 · A* · Pure Pursuit · LiDAR</span>
+        <a href="https://github.com/parkwilliamy/wato_asd_training" target="_blank" rel="noopener">Source &#8599;</a>
       </div>
     </header>
 
@@ -51,7 +60,7 @@
 
       <h2>Demo</h2>
       <figure class="hero-fig">
-        <video controls preload="metadata" playsinline>
+        <video controls preload="metadata" playsinline poster="../assets/img/ans-poster.jpg">
           <source src="../assets/vid/watonomous-asd.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -112,7 +121,7 @@
         ROS2 enables scalable, flexible, and efficient development for real-world
         robotics.
       </p>
-      <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 18px;">
+      <p class="footnote">
         Note: this project is inspired by the University of Waterloo WATonomous design
         team's onboarding assignment.
       </p>
@@ -120,12 +129,17 @@
   </main>
 
   <footer>
-    <div>© <span id="year"></span> William Park</div>
-    <div class="socials">
-      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="foot-mark">&#169; <span id="year">2026</span> William Park</span>
+    <nav class="foot-links" aria-label="Contact">
+      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn &#8599;</a>
       <a href="mailto:w5park@uwaterloo.ca">Email</a>
-    </div>
+      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </nav>
   </footer>
+  </div>
+  <script src="../js/projects.js"></script>
+  <script src="../js/plan-lib.js"></script>
+  <script src="../js/locator.js"></script>
   <script src="../js/project-page.js" defer></script>
 </body>
 </html>

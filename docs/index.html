@@ -9,12 +9,15 @@
   <meta property="og:title" content="William Park">
   <meta property="og:description" content="Engineering projects in embedded systems, robotics, and computer architecture.">
   <meta property="og:url" content="https://www.williampark.org/">
-  <meta property="og:image" content="https://www.williampark.org/assets/img/r500.png">
+  <meta property="og:image" content="https://www.williampark.org/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/home.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <script>
     // If arriving here via a top-nav link from a project page, jump to the
@@ -31,8 +34,6 @@
             var el = document.getElementById(location.hash.slice(1));
             if (el) el.scrollIntoView();
           }
-          // Restore on the next frame so the smooth-scroll CSS takes over
-          // again for subsequent in-page anchor clicks.
           requestAnimationFrame(function () {
             root.style.scrollBehavior = prev;
           });
@@ -47,129 +48,162 @@
   </script>
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="index.html" class="brand">Home</a>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </nav>
-
-  <main>
-    <section class="hero">
-      <p class="hero-eyebrow">Electrical Engineering @ University of Waterloo</p>
-      <h1>William Park</h1>
-      <p class="lede">
-        Currently researching hardware prefetchers for the RISC-V vector extension,
-        developing a RISC-V CPU, and designing a ray-tracing ASIC for Tiny Tapeout.
-      </p>
-      <div class="quick-links">
-        <a class="quick-link" href="assets/resume.pdf" target="_blank" rel="noopener">
-          Resume <span class="arrow">↗</span>
-        </a>
-        <a class="quick-link" href="https://github.com/parkwilliamy" target="_blank" rel="noopener">
-          GitHub <span class="arrow">↗</span>
-        </a>
-        <a class="quick-link" href="mailto:w5park@uwaterloo.ca">
-          Email <span class="arrow">↗</span>
-        </a>
+<!--
+THESIS: William's work as an annotated chip floorplan — projects are placed
+IP blocks carrying measured results. Refuses the dark neon card-grid dev
+portfolio, and keeps the silicon world implicit: no report-form labels.
+OWN-WORLD: Plot-paper #edefe8, graphite ink, hairline rules; flat saturated
+block fills (green/blue/yellow/red) inside a pad-ringed die with corner
+keys, tiled gaplessly; one mono size (Martian Mono) — hierarchy is weight,
+tracking, ink, spacing; status is mark form on the index swatches and
+timeline nodes (die stays status-neutral).
+STORY: A recruiter sees an engineer who measures his work, trusts the
+numbers, clicks a block or index row into a write-up.
+FIRST VIEWPORT: Ruled header (name, nav, intro) above the die floorplan at
+left and the project index at right; hovering a block dims the others and
+highlights its index row.
+FORM: Chip floorplan — user-steered refinement of the wafer-map direction,
+seed 7f679b8b, code-led.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the
+finish review, the verdict, DESIGN.md, and every shipping raster carrying
+its provenance.
+-->
+  <div class="sheet">
+    <header class="report-head">
+      <div class="head-bar">
+        <h1 class="brand">William Park</h1>
+        <nav class="head-nav" aria-label="Site">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+          <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:w5park@uwaterloo.ca">Email</a>
+        </nav>
       </div>
-    </section>
+      <div class="id-grid">
+        <div class="id-cell">
+          <span class="id-value">Electrical Engineering @ University of Waterloo</span>
+        </div>
+      </div>
+      <p class="status-line">
+        <span class="status-text">
+          Currently researching hardware prefetchers for the RISC-V vector extension,
+          developing a RISC-V CPU, and designing a ray-tracing ASIC for Tiny Tapeout.
+        </span>
+      </p>
+    </header>
 
-    <section class="section" id="projects">
-      <h2>Projects</h2>
-      <div id="project-list-root"></div>
-    </section>
+    <main>
+      <section class="section" id="projects">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <span class="section-note">Click a block or a row to read the full write-up</span>
+        </div>
+        <div class="plan-grid">
+          <div class="plan-panel">
+            <div id="plan-root"></div>
+          </div>
+          <div class="legend-panel">
+            <ol class="legend" id="legend-root"></ol>
+            <noscript>
+              <ul class="noscript-list">
+                <li><a href="projects/r500.html">R500 — 32-bit pipelined RV32I CPU (Jun 2025 – Present)</a></li>
+                <li><a href="projects/autonomous-navigation-system.html">Autonomous Navigation System — ROS2 (May 2025)</a></li>
+                <li><a href="projects/robot-hand.html">Robot Hand — gesture-mirroring servos (Feb – Apr 2025)</a></li>
+                <li><a href="projects/line-follower-robot.html">Line-Follower Robot — PID control (Dec 2024 – Jan 2025)</a></li>
+              </ul>
+            </noscript>
+          </div>
+        </div>
+      </section>
 
-    <section class="section" id="experience">
-      <h2>Work Experience</h2>
-      <ul class="experience-list">
-        <li class="exp-card">
-          <div class="exp-head">
-            <img class="exp-logo" src="assets/img/uwaterloo_logo.jpg" alt="University of Waterloo logo">
-            <div class="exp-titles">
-              <h3 class="exp-company">University of Waterloo</h3>
-              <p class="exp-role">Undergraduate Research Co-op</p>
+      <section class="section" id="experience">
+        <div class="section-head">
+          <h2>Work Experience</h2>
+        </div>
+        <ol class="traveler">
+          <li class="traveler-row">
+            <span class="trav-date">May 2026 – Present</span>
+            <span class="trav-axis"><span class="trav-node trav-node-live"></span></span>
+            <div class="trav-body">
+              <div class="trav-head">
+                <div class="trav-id">
+                  <img class="trav-logo" src="assets/img/uwaterloo_logo.jpg" alt="">
+                  <h3 class="trav-org">University of Waterloo</h3>
+                </div>
+                <span class="trav-role">Undergraduate Research Co-op</span>
+                <span class="trav-loc">Waterloo, ON</span>
+              </div>
+              <p class="trav-summary">
+                Researching hardware prefetchers for irregular memory access patterns
+                in RISC-V vectorized workloads. Extending gem5’s simulation
+                infrastructure in C++ to prototype and evaluate experimental
+                prefetcher designs.
+              </p>
             </div>
-          </div>
-          <div class="exp-meta">
-            <span class="meta-item">Waterloo, ON</span>
-            <span class="meta-item">May 2026 – Present</span>
-          </div>
-          <p class="exp-summary">
-            Researching hardware prefetchers for 
-            irregular memory access patterns in RISC-V vectorized workloads. 
-            Extending gem5’s simulation infrastructure in C++ to 
-            prototype and evaluate experimental prefetcher designs.
-          </p>
-        </li>
-        <li class="exp-card">
-          <div class="exp-head">
-            <img class="exp-logo" src="assets/img/uwasic_logo.jpg" alt="UWASIC logo">
-            <div class="exp-titles">
-              <h3 class="exp-company">UWASIC</h3>
-              <p class="exp-role">Digital Team Lead</p>
+          </li>
+          <li class="traveler-row">
+            <span class="trav-date">Oct 2025 – Present</span>
+            <span class="trav-axis"><span class="trav-node trav-node-live"></span></span>
+            <div class="trav-body">
+              <div class="trav-head">
+                <div class="trav-id">
+                  <img class="trav-logo" src="assets/img/uwasic_logo.jpg" alt="">
+                  <h3 class="trav-org">UWASIC</h3>
+                </div>
+                <span class="trav-role">Digital Team Lead</span>
+                <span class="trav-loc">Waterloo, ON</span>
+              </div>
+              <p class="trav-summary">
+                Leading a team of students to design and fabricate the first
+                programmable ray-tracing ASIC on Tiny Tapeout. Designed system
+                architecture to enable parallel development, creating functional
+                blocks, behavioral specifications, and interface definitions.
+                Profiled ray-tracing kernels to measure arithmetic operation
+                frequency, identifying hardware optimization targets.
+              </p>
             </div>
-          </div>
-          <div class="exp-meta">
-            <span class="meta-item">Waterloo, ON</span>
-            <span class="meta-item">Oct 2025 – Present</span>
-          </div>
-          <p class="exp-summary">
-            Leading a team of students to design and fabricate the 
-            first programmable ray-tracing ASIC on Tiny Tapeout.
-            Designed system architecture to enable parallel development, 
-            creating functional blocks, behavioral specifications, and interface definitions.
-            Profiled ray-tracing kernels to measure arithmetic operation frequency, 
-            identifying hardware optimization targets.
-          </p>
-        </li>
-        <li class="exp-card">
-          <div class="exp-head">
-            <img class="exp-logo" src="assets/img/kiwi_charge_logo.jpg" alt="Kiwi Charge logo">
-            <div class="exp-titles">
-              <h3 class="exp-company">Kiwi Charge</h3>
-              <p class="exp-role">Electrical Engineering Intern</p>
+          </li>
+          <li class="traveler-row">
+            <span class="trav-date">Sept 2025 – Dec 2025</span>
+            <span class="trav-axis"><span class="trav-node"></span></span>
+            <div class="trav-body">
+              <div class="trav-head">
+                <div class="trav-id">
+                  <img class="trav-logo" src="assets/img/kiwi_charge_logo.jpg" alt="">
+                  <h3 class="trav-org">Kiwi Charge</h3>
+                </div>
+                <span class="trav-role">Electrical Engineering Intern</span>
+                <span class="trav-loc">Toronto, ON</span>
+              </div>
+              <p class="trav-summary">
+                Built a ROS2-based CAN teleoperation pipeline for a four-wheel
+                differential-drive prototype and designed its electrical schematic
+                (power distribution, motor drivers, CAN, sensor integration). Wrote
+                Python scripts to configure and tune multiple motor drivers in
+                parallel over CAN, cutting setup time by 98%.
+              </p>
             </div>
-          </div>
-          <div class="exp-meta">
-            <span class="meta-item">Toronto, ON</span>
-            <span class="meta-item">Sept 2025 – Dec 2025</span>
-          </div>
-          <p class="exp-summary">
-            Built a ROS2-based CAN teleoperation pipeline for a four-wheel
-            differential-drive prototype and designed its electrical schematic
-            (power distribution, motor drivers, CAN, sensor integration). Wrote
-            Python scripts to configure and tune multiple motor drivers in parallel
-            over CAN, cutting setup time by 98%.
-          </p>
-        </li>
-      </ul>
-    </section>
-  </main>
+          </li>
+        </ol>
+      </section>
+    </main>
 
-  <footer>
-    <div>© <span id="year"></span> William Park</div>
-    <div class="socials">
-      <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:w5park@uwaterloo.ca">Email</a>
-    </div>
-  </footer>
+    <footer>
+      <span class="foot-mark">© <span id="year">2026</span> William Park</span>
+      <nav class="foot-links" aria-label="Contact">
+        <a href="https://linkedin.com/in/parkwilliamy" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:w5park@uwaterloo.ca">Email</a>
+        <a href="https://github.com/parkwilliamy" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </footer>
+  </div>
 
   <script src="js/projects.js"></script>
+  <script src="js/plan-lib.js"></script>
+  <script src="js/floorplan.js"></script>
   <script>
-    renderProjectList("project-list-root");
     document.getElementById("year").textContent = new Date().getFullYear();
-    (function(){/* sticky-nav */
-      var nav = document.querySelector('.top-nav');
-      if (!nav) return;
-      var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-
   </script>
 </body>
 </html>
