@@ -28,6 +28,15 @@
 }
 @keyframes register { from { opacity: 0; } }
 
+.plan-caption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 /* index: the real, crawlable project list */
 .legend { list-style: none; border-top: 1px solid var(--rule-strong); }
 .legend-row {

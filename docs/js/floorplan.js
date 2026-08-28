@@ -117,6 +117,8 @@
 
   svg.push("</svg>");
   planRoot.innerHTML = svg.join("");
+  var caption = document.getElementById("plan-caption");
+  if (caption) caption.hidden = false;
 
   // --- legend: the real index ---
   legendRoot.innerHTML = projects.map(function (p, i) {
