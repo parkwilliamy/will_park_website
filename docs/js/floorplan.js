@@ -99,6 +99,7 @@
     var rotate = vertical ? ' transform="rotate(-90 ' + cx.toFixed(1) + " " + cy.toFixed(1) + ')"' : "";
 
     svg.push(
+      '<a class="block-link" href="projects/' + esc(p.slug) + '.html" tabindex="-1">',
       '<g class="block" data-slug="' + esc(p.slug) + '">',
       '<rect class="block-fill" style="--d:' + (bi * 110) + 'ms" x="' + x + '" y="' + y +
       '" width="' + w + '" height="' + h + '" fill="' + bin + '"/>',
@@ -106,7 +107,8 @@
       '" fill="none" stroke="#22262a" stroke-width="2"/>',
       '<text class="block-code"' + rotate + ' style="font-size:' + size + 'px;letter-spacing:' + track + 'px" text-anchor="middle" fill="#22262a" stroke="' +
       bin + '" stroke-width="' + Math.max(2.4, size * 0.2).toFixed(1) + '">' + labelSvg + "</text>",
-      "</g>"
+      "</g>",
+      "</a>"
     );
   });
 
@@ -153,18 +155,21 @@
     if (g) setActive(g.getAttribute("data-slug"));
   });
   planRoot.addEventListener("mouseleave", function () { setActive(null); });
-  planRoot.addEventListener("click", function (e) {
-    var g = e.target.closest(".block");
-    if (g) window.location.href = "projects/" + g.getAttribute("data-slug") + ".html";
-  });
+  // Blocks are real SVG links (Ctrl/middle-click, URL preview all work natively).
   legendRoot.addEventListener("mouseover", function (e) {
     var row = e.target.closest(".legend-row");
     if (row) setActive(row.getAttribute("data-slug"));
   });
   legendRoot.addEventListener("mouseleave", function () { setActive(null); });
-  // Whole row navigates — the note promises "click a row", so honor it.
+  // Whole row navigates — the note promises "click a row", so honor it —
+  // but never when the reader is selecting text or dragged the pointer.
+  var pressAt = null;
+  legendRoot.addEventListener("pointerdown", function (e) { pressAt = [e.clientX, e.clientY]; });
   legendRoot.addEventListener("click", function (e) {
     if (e.target.closest("a")) return;
+    var sel = window.getSelection && String(window.getSelection()).trim();
+    if (sel) return;
+    if (pressAt && Math.hypot(e.clientX - pressAt[0], e.clientY - pressAt[1]) > 4) return;
     var row = e.target.closest(".legend-row");
     if (row) window.location.href = "projects/" + row.getAttribute("data-slug") + ".html";
   });

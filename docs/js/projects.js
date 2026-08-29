@@ -33,7 +33,7 @@ window.PROJECTS = [
   },
   {
     slug: "robot-hand",
-    title: "Robot Hand",
+    title: "Robotic Hand",
     code: "ROBOTIC HAND",
     tagline: "Servo-driven robotic hand that mirrors user gestures via MediaPipe hand landmarks.",
     date: "Feb 2025 – Apr 2025",
@@ -44,7 +44,7 @@ window.PROJECTS = [
   },
   {
     slug: "line-follower-robot",
-    title: "Line-Follower Robot",
+    title: "Line-Following Robot",
     code: "LINE-FOLLOWING ROBOT",
     tagline: "PID-controlled robot that follows lined tracks.",
     date: "Dec 2024 – Jan 2025",
