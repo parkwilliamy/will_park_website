@@ -10,9 +10,13 @@
 }
 .plan-panel { min-width: 0; }
 .plan-svg { display: block; width: 100%; height: auto; }
-.plan-svg .block { cursor: pointer; transition: opacity 0.18s ease-out; }
-.plan-svg.has-active .block:not(.is-active) { opacity: 0.3; }
-.plan-svg .block:active { opacity: 0.7; }
+.plan-svg .block { cursor: pointer; touch-action: manipulation; }
+/* Hover-dimming only where hovering exists; on touch it just stutters into navigation. */
+@media (hover: hover) {
+  .plan-svg .block { transition: opacity 0.18s ease-out; }
+  .plan-svg.has-active .block:not(.is-active) { opacity: 0.3; }
+}
+.plan-svg .block:active { opacity: 0.7; transition: none; }
 .plan-svg .block-code {
   font-family: inherit;
   font-weight: 700;
@@ -46,10 +50,13 @@
   padding: 16px 0;
   border-bottom: 1px solid var(--rule);
   cursor: pointer;
-  transition: background-color 0.18s ease-out;
+  touch-action: manipulation;
 }
-.legend-row.is-active { background: rgba(34, 38, 42, 0.05); }
-.legend-row:active { background: rgba(34, 38, 42, 0.09); }
+@media (hover: hover) {
+  .legend-row { transition: background-color 0.18s ease-out; }
+  .legend-row.is-active { background: rgba(34, 38, 42, 0.05); }
+}
+.legend-row:active { background: rgba(34, 38, 42, 0.09); transition: none; }
 .swatch {
   width: 18px;
   height: 18px;
